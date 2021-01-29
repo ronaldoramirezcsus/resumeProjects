@@ -1,0 +1,197 @@
+/**
+ * This is a Basketball palyer class which includes all it's necessay info
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class BasketballPlayer extends Player implements Comparable<BasketballPlayer>{
+   private int threePointer;
+   private int turnover;
+   private int assist;
+   private int rebound;
+   private int twoPointer;
+   private String teamName;
+   /**
+    * This is the Basketball player constructor
+    * 
+    * @param name Name
+    * @param salary Salary
+    * @param number Number
+    * @param threePointer Number of three pointers
+    * @param turnover Number of turnovers
+    * @param assist Number of assists
+    * @param rebound Number of rebounds
+    * @param twoPointer Number of two pointers
+    * @param teamName Name of team
+    */
+   public BasketballPlayer(String name, double salary, int number, int threePointer, int turnover, int assist, int rebound, int twoPointer, String teamName) {
+      super(name,salary,number);
+      this.threePointer = threePointer;
+      this.turnover = turnover;
+      this.assist = assist;
+      this.rebound = rebound;
+      this.twoPointer = twoPointer;
+      this.teamName = teamName;
+   }
+   /**
+    * Gets the Name
+    *
+    * @return super.getName() Name of player
+    */
+   public String getName(){
+      return super.getName();
+   }
+   /**
+    * Gets the salary
+    *
+    * @return super.getSalary() Salary of player
+    */
+   public double getSalary(){
+      return super.getSalary();
+   }
+   /**
+    * Gets the number
+    *
+    * @return super.getNumber() Number of player
+    */
+   public int getNumber(){
+      return super.getNumber();
+   }
+   /** 
+    * Sets the number of three pointers
+    * 
+    * @param three Number of three pointers
+    */
+   public void setThreePointer(int three){
+      threePointer = three;
+   }
+   /**
+    * Sets the number of turnovers
+    * 
+    * @param t Number of turnovers
+    */
+   public void setTurnover(int t){
+      turnover = t;
+   }
+   /** 
+    * Sets the number of assists
+    * 
+    * @param a Number of assists
+    */
+   public void setAssist(int a){
+      assist = a;
+   }
+   /**
+    * Sets the number of rebounds
+    * 
+    * @param r Number of rebounds
+    */
+   public void setRebound(int r){
+      rebound = r;
+   }
+   /**
+    * Sets the number of two pointers
+    * 
+    * @param two Number of two pointers
+    */
+   public void setTwoPointer(int two){
+      twoPointer = two;
+   }
+   /**
+    * Sets the name of the team
+    * 
+    * @param tn Name of the team
+    */
+   public void setTeamName(String tn){
+      teamName = tn;
+   }
+   /**
+    * Gets the number of three pointers
+    * 
+    * @return threePointer Number of three pointers
+    */
+   public int getThreePointer(){
+      return threePointer;
+   }
+   /**
+    * Gets the number turnovers
+    * 
+    * @return turnover Number of turnovers
+    */
+   public int getTurnover(){
+      return turnover;
+   }
+   /**
+    * Gets the number of assists
+    * 
+    * @return assist Number of assists
+    */
+   public int getAssist(){
+      return assist;
+   }
+   /**
+    * Gets the number of rebounds
+    * 
+    * @return rebound Number of rebounds
+    */
+   public int getRebound(){
+      return rebound;
+   }
+   /**
+    * Gets the number of twp pointers
+    * 
+    * @return twoPointer Number of two pointers
+    */
+   public int getTwoPointer(){
+      return twoPointer;
+   }
+   /**
+    * Gets the name of the team
+    * 
+    * @return teamName Name of the team
+    */
+   public String getTeamName(){
+      return teamName;
+   }
+   /**
+    * Compares the players and returns either true or false based on the tests
+    *
+    * @param other Other basketball player
+    * @return true True when names match
+    */
+   public boolean equals(BasketballPlayer other){
+      if(this.getName() == other.getName()){
+         return true;
+      }
+      else{
+         return false; 
+      }
+   }
+   /**
+    * To string interpretation
+    *
+    */
+   public String toString(){
+      return getName() + " " + getSalary() + " " + getNumber() + " " + threePointer + " " + turnover + "  " + assist + " " + rebound + " " + twoPointer + " " + teamName;
+   }
+   /**
+    * Gets the total amount of points
+    *
+    * @return (threePointer*3) + (twoPointer*2)
+    */
+   public int getTotalPoints(){
+      return (threePointer*3) + (twoPointer*2); 
+   }
+   /**
+    * Overwrites the implemented method from comparable
+    *
+    */
+   public int compareTo(BasketballPlayer other){
+      if(this.getName() == other.getName()){
+         return 1;
+      }
+      else{
+         return 0; 
+      }
+   }
+}
