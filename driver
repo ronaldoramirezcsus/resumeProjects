@@ -1,0 +1,204 @@
+import java.io.*;
+import java.util.*;
+/**
+ * This is the driver class which shows the actual output to the screen
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class Driver{
+   /**
+    * This is the main method which just test all of the methods in the driver class
+    * 
+    * @param args Main methos syntax
+    * @throws FileNotFoundException When the file is not found
+    */
+   public static void main(String[] args) throws FileNotFoundException {
+      //create a soccerteam and basketballteam which are going to be used for the tests
+      SoccerTeam bearCat = new SoccerTeam("bearcatlist.txt");
+      BasketBallTeam kings = new BasketBallTeam("kingslist.txt");
+      //test the listPlayers method for the soccer team
+      System.out.println("List of all soccer players:");
+      listPlayers(bearCat.getTeam());
+      System.out.println();
+      //test the listPlayers method for the basketball team
+      System.out.println("List of all basketball players:");
+      listPlayers(kings.getTeam());
+      System.out.println();
+      //test the listRedCard method for the soccer team
+      System.out.println("Soccer players with red cards:");
+      listRedCard(bearCat.getTeam(),bearCat);
+      System.out.println();
+      //test the mostRebound method for the basketball team
+      System.out.println("Basketball Player with the most rebounds:");
+      mostRebound(kings);
+      System.out.println();
+      //Test the searchPlayer method using a soccer team object
+      System.out.println("Find the soccer player:");
+      searchPlayer(bearCat.getTeam(), "Pearce Skinner");
+      System.out.println();
+      //Test the searchPlayer method using a basketball team object
+      System.out.println("Find the basketball player:");
+      searchPlayer(kings.getTeam(), "Skal Labissiere");
+      System.out.println();
+      //Test the searchPlayer method when the player is not found
+      System.out.println("Find the basketball player:");
+      searchPlayer(kings.getTeam(), "Skasdfasl Labissiere");
+      System.out.println();
+      //Test the bestPlayer method using a soccerteam object
+      System.out.println("Best player on soccer team:");
+      bestPlayer(bearCat);
+      System.out.println();
+      //Test the bestPlayer method using a basketball object
+      System.out.println("Best player on basketball team:");
+      bestPlayer(kings);
+      System.out.println();
+      //Test the simulate method using a soccerteam object
+      System.out.println("Simulation for soccer team:");
+      simulate(bearCat);  
+      System.out.println();
+      //Test the simulate method using a soccerteam object
+      System.out.println("Simulation for basketball team:");
+      simulate(kings);
+   }
+   /**
+    * This is the method that lists all the players from the team
+    * @param p ArrayList of a certain team
+    */
+   public static void listPlayers(ArrayList<Player> p){ 
+      Iterator<Player> itr = p.iterator();
+      while(itr.hasNext()){
+         Player pl = itr.next();
+         if(pl instanceof SoccerPlayer){
+            System.out.println((SoccerPlayer)(pl));
+         }
+         else if(pl instanceof BasketballPlayer){
+            System.out.println((BasketballPlayer)(pl));
+         }
+      }
+   }
+   /**
+    * This is the method that lists all the players with red cards from the soccer team
+    * @param sp ArrayList of soccer players
+    * @param st SoccerTeam object
+    */
+   public static void listRedCard(ArrayList<SoccerPlayer> sp, SoccerTeam st){
+      Iterator<SoccerPlayer> itr = st.getTeam().iterator();
+      while(itr.hasNext()){
+         SoccerPlayer red = itr.next();
+         int num = red.getRed();
+         if(num > 0){
+            System.out.println(red.getName());
+         }
+      }
+   }
+   /**
+    * This is the method that prints out the basketball player with the most rebounds
+    * @param bt BasketballTeam object
+    */
+   public static void mostRebound(BasketBallTeam bt){
+      BasketballPlayer bp = bt.selectMostRebound();
+      System.out.println(bp);
+   }
+   /**
+    * This is the method that searches for a specific player on a team and if its not foundit displays a special message
+    * @param p ArrayList of a certain team
+    * @param name Name of the player you want to find
+    */
+   public static void searchPlayer(ArrayList<Player> p , String name){
+      Iterator<Player> itr = p.iterator();
+      Player pl = itr.next();
+      int count = 0;
+      
+      
+      if(pl instanceof SoccerPlayer){
+      SoccerPlayer found = (SoccerPlayer)(pl);
+         while(itr.hasNext()){
+            String n = pl.getName();
+            if(n.equals(name)){
+               found = (SoccerPlayer)(pl);
+            }
+            else{
+               count++;
+            }
+            pl = itr.next();
+         }
+         if(count == p.size()-1){
+            System.out.println("Not found");
+         }
+         else{
+            System.out.println(found);
+         }
+      }
+      else if(pl instanceof BasketballPlayer){
+      BasketballPlayer founds = (BasketballPlayer)(pl);
+         while(itr.hasNext()){
+            String n = pl.getName();
+            if(n.equals(name)){
+               founds = (BasketballPlayer)(pl);
+            }
+            else{
+               count++;
+            }
+            pl = itr.next();
+         }
+         if(count == p.size()-1){
+            System.out.println("Not found");
+         }
+         else{
+            System.out.println(founds);
+         }
+      }
+   }
+   /**
+    * This is the method that lists the best player of a certain team
+    * @param player Object of whatever team the player belongs to
+    */
+   public static void bestPlayer(Object player){
+      if(player instanceof SoccerTeam){
+         SoccerTeam st = (SoccerTeam)(player);
+         System.out.println(st.selectTheBest());
+      
+      }
+      else{
+         BasketBallTeam bt = (BasketBallTeam)(player);
+         System.out.println(bt.selectTheBest());
+      }
+   }
+   /**
+    * This is the method that simulates a match between 2 teams
+    * @param team Object of whatever team you want
+    */
+   public static void simulate(Object team){
+      Random rand = new Random();
+      int win = 0;
+      int loss = 0;
+      if(team instanceof SoccerTeam){
+         
+         for(int i = 1; i <= 10; i++){
+            int num = rand.nextInt(2);
+            if(num == 1){
+               win++;
+            }
+            else{
+               loss++;
+            } 
+         }
+         System.out.println("Games won: " + win);
+         System.out.println("Games lost: " + loss);
+      }
+      else if(team instanceof BasketBallTeam){
+         for(int i = 1; i <= 10; i++){
+            int num = rand.nextInt(2);
+            if(num == 1){
+               win++;
+            }
+            else{
+               loss++;
+            } 
+         }
+         System.out.println("Games won: " + win);
+         System.out.println("Games lost: " + loss);
+      }
+   }
+}
