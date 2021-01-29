@@ -1,0 +1,220 @@
+/**
+ * This is a SoccerPlayer class which includes all it's necessay info
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class SoccerPlayer extends Player implements Comparable<SoccerPlayer>{
+   private int goals;
+   private int fouls;
+   private int red;
+   private int yellow;
+   private int offside;
+   private int assist;
+   private String team;
+   /**
+    * This is the Soccer player constructor
+    * 
+    * @param name Name
+    * @param salary Salary
+    * @param number Number
+    * @param goals Number of goals
+    * @param fouls Number of fouls
+    * @param red Number of reds
+    * @param yellow Number of yellows
+    * @param offside Number of offsides
+    * @param assist Number of assists
+    * @param team Name of team
+    */
+   public SoccerPlayer (String name, double salary, int number, int goals, int fouls, int red, int yellow, int offside, int assist, String team){
+      super(name,salary,number);
+      this.goals = goals;
+      this.fouls = fouls;
+      this.red = red;
+      this.yellow = yellow;
+      this.offside = offside;
+      this.assist = assist;
+      this.team = team;
+   }
+   /**
+    * Gets the Name
+    *
+    * @return super.getName() Name of player
+    */
+   public String getName(){
+      return super.getName();
+   }
+   /**
+    * Gets the salary
+    *
+    * @return super.getSalary() Salary of player
+    */
+   public double getSalary(){
+      return super.getSalary();
+   }
+   /**
+    * Gets the number
+    *
+    * @return super.getNumber() Number of player
+    */
+   public int getNumber(){
+      return super.getNumber();
+   }
+   /**
+    * Sets the goals of the player
+    * 
+    * @param g Goals
+    */
+   public void setGoals(int g){
+      goals = g;
+   }
+   /**
+    * Sets the fouls of the player
+    * 
+    * @param f fouls
+    */
+   public void setFouls(int f){
+      fouls = f;
+   }
+   /**
+    * Sets the number of reds of the player
+    * 
+    * @param r Number of reds
+    */
+   public void setRed(int r){
+      red = r;
+   }
+   /**
+    * Sets the number of yellows of the player
+    * 
+    * @param y Number of yellows
+    */
+   public void setYellow(int y){
+      yellow = y;
+   }
+   /**
+    * Sets the number of offisde of the player
+    * 
+    * @param o Number of offsides
+    */
+   public void setOffside(int o){
+      offside = o;
+   }
+   /* Sets the number of assists of the player
+    * 
+    * @param a Number of assists
+    */
+   public void setAssist(int a){
+      assist = a;
+   }
+   /**
+    * Sets the name of the team
+    * 
+    * @param t Sets the name of the team
+    */
+   public void setTeam(String t){
+      team = t;
+   }
+   /**
+    * Gets the goals
+    * 
+    * @return goals Number of goals
+    */
+   public int getGoals(){
+      return goals;
+   }
+   /**
+    * Gets the fouls
+    * 
+    * @return fouls Number of fouls
+    */
+   public int getFouls(){
+      return fouls;
+   }
+   /**
+    * Gets the reds
+    * 
+    * @return red Number of reds
+    */
+   public int getRed(){
+      return red;
+   }
+   /**
+    * Gets the yellows
+    * 
+    * @return yellow Number of yellows
+    */
+   public int getYellow(){
+      return yellow;
+   }
+   /**
+    * Gets the offsides
+    * 
+    * @return offside Number of offsides
+    */
+   public int getOffside(){
+      return offside;
+   }
+   /**
+    * Gets the assists
+    *
+    * @return assist Number of assists
+    */
+   public int getAssist(){
+      return assist;
+   }
+   /**
+    * Gets the name of the team
+    *
+    * @return team Name of the team
+    */
+   public String getTeam(){
+      return team;
+   }
+   /**
+    * To string interpretation
+    *
+    */
+   public String toString(){
+      return getName() + " " + getSalary() + " " + getNumber() + " " + goals + " " + fouls + " " + red  + " " + yellow + " " + offside + " " + assist + " " + team;
+   }
+   /**
+    * Compares the players and returns either true or false based on the tests
+    *
+    * @param other Other soccerplayer
+    * @return true True when names match
+    */
+   public boolean equals(SoccerPlayer other){
+      if(this.getName() == other.getName()){
+         return true;
+      }
+      else{
+         return false; 
+      }
+   }
+   /**
+    * Returns a boolean depending on how many fouls/yellows the player got
+    *
+    * @return false False when the player has more than 3 fouls or more than 2 yellows
+    */
+   public boolean pullOutPlayer(){
+      if(getFouls() >= 3 || getYellow() >= 2){
+         return false;
+      }
+      else{
+         return true;
+      }
+   }
+   /**
+    * Overwrites the implemented method from comparable
+    *
+    */
+   public int compareTo(SoccerPlayer other){
+      if(this.getName() == other.getName()){
+         return 1;
+      }
+      else{
+         return 0; 
+      }
+   }
+}
