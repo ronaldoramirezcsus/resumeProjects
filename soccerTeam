@@ -1,0 +1,138 @@
+import java.util.*;
+import java.io.*;
+/**
+ * This is a Soccer team class which includes all it's necessay info
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class SoccerTeam{
+   private ArrayList<SoccerPlayer> teamSoccer = new ArrayList<SoccerPlayer>();
+   /**
+    * This constructor reads from a file and adds elements to an array list
+    * 
+    * @throws FileNotFoundException When file is not found
+    * @param file This is the file
+    */
+   public SoccerTeam(String file) throws FileNotFoundException{
+      File f = new File(file);
+      Scanner text = new Scanner(f);
+      while(text.hasNext()){
+         String first = text.next();
+         String last = text.next();
+         String name = first+" "+last;
+         double salary = text.nextDouble();
+         int number = text.nextInt();
+         int goals = text.nextInt();
+         int fouls = text.nextInt();
+         int red = text.nextInt();
+         int yellow = text.nextInt();
+         int offside = text.nextInt();
+         int assist = text.nextInt();
+         String team = text.next();
+         SoccerPlayer sp = new SoccerPlayer(name,salary,number,goals,fouls,red,yellow,offside,assist,team);
+         teamSoccer.add(sp);       
+      }
+   }
+   /**
+    * This method add to an array list
+    * 
+    * @param sp Soccer player to be added
+    */
+   public void add(SoccerPlayer sp){
+      teamSoccer.add(sp);
+   }
+   /**
+    * This method add to a specific location in an array list
+    * 
+    * @param sp Soccer player to be added
+    * @param pos Position the player will be added to
+    */
+   public void add(SoccerPlayer sp, int pos){
+      teamSoccer.add(pos,sp);
+   }
+   /**
+    * This method gets the whole team as an arraylist
+    * 
+    * @return teamSoceer The whole soccer team
+    */
+   public ArrayList getTeam(){
+      return teamSoccer;
+   }
+   /**
+    * This method selects the best player from the team
+    * 
+    * @return best Best soccer player in team
+    */
+   public SoccerPlayer selectTheBest(){
+      Iterator<SoccerPlayer> itr = teamSoccer.iterator();
+      SoccerPlayer best = itr.next();
+      int highest = best.getGoals();
+      while(itr.hasNext()){
+         SoccerPlayer other = itr.next();
+         int next = other.getGoals();
+         if(next > highest){
+            best = other;
+         }
+      }
+      return best;
+   }
+   /**
+    * This method selects the plyer with the most reds
+    * 
+    * @return most Soccer player with the most reds
+    */
+   public SoccerPlayer selectMostRed(){
+      Iterator<SoccerPlayer> itr = teamSoccer.iterator();
+      SoccerPlayer most = itr.next();
+      int highest = most.getRed();
+      while(itr.hasNext()){
+         SoccerPlayer other = itr.next();
+         int next = other.getRed();
+         if(next > highest){
+            most = other;
+         }
+      }
+      return most;
+   }
+   /**
+    * This method is a to string interpretation
+    * 
+    * @return s String interpretation of the whole team
+    */
+   public String toString(){
+      String s = "";
+      for(SoccerPlayer p: teamSoccer){
+         s = s + p.toString() + "\n";
+      }
+      return s;
+   }
+   /**
+    * This method determines whether 2 players are equal
+    * 
+    * @param other Other soccer team
+    * @return false 
+    */
+   public boolean equals(SoccerTeam other){
+      for(SoccerPlayer p: teamSoccer){
+         boolean value = p.equals(other);
+      }
+      return false;
+   }
+   /**
+    * This method removes a player to an array list
+    * 
+    * @param sp Soccer player to be removed
+    */
+   public void Remove(SoccerPlayer sp){
+      teamSoccer.remove(teamSoccer.indexOf(sp));
+   }
+   /**
+    * This method removes a player at a specific index
+    * 
+    * @param index Index at where the player will be removed
+    */
+   public void Remove(int index){
+      teamSoccer.remove(index);
+   }
+}
