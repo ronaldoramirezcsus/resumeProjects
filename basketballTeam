@@ -1,0 +1,137 @@
+import java.io.*;
+import java.util.*;
+/**
+ * This is a Basketball team class which includes all it's necessay info
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class BasketBallTeam{
+   private ArrayList<BasketballPlayer> teamBasketball = new ArrayList<BasketballPlayer>();
+   /**
+    * This constructor reads from a file and adds elements to an array list
+    * 
+    * @throws FileNotFoundException When file is not found
+    * @param file This is the file
+    */
+   public BasketBallTeam(String file) throws FileNotFoundException{
+      File f = new File(file);
+      Scanner text = new Scanner(f);
+      while(text.hasNext()){
+         String first = text.next();
+         String last = text.next();
+         String name = first+" "+last;
+         double salary = text.nextDouble();
+         int number = text.nextInt();
+         int threePointer = text.nextInt();
+         int turnover = text.nextInt();
+         int assist = text.nextInt();
+         int rebound = text.nextInt();
+         int twoPointer = text.nextInt();
+         String teamName = text.next();
+         BasketballPlayer bp = new BasketballPlayer(name,salary,number,threePointer,turnover,assist,rebound,twoPointer,teamName);
+         teamBasketball.add(bp);       
+      }
+   }
+   /**
+    * This method add to an array list
+    * 
+    * @param bp Basketball player to be added
+    */
+   public void add(BasketballPlayer bp){
+      teamBasketball.add(bp);
+   }
+   /**
+    * This method add to a specific location in an array list
+    * 
+    * @param bp Basketball player to be added
+    * @param pos Position the player will be added to
+    */
+   public void add(BasketballPlayer bp, int pos){
+      teamBasketball.add(pos,bp);
+   }
+   /**
+    * This method gets the whole team as an arraylist
+    * 
+    * @return teamBasketball The whole basketball team
+    */
+   public ArrayList getTeam(){
+      return teamBasketball;
+   }
+   /**
+    * This method selects the best player from the team
+    * 
+    * @return best Best basketball player in team
+    */
+   public BasketballPlayer selectTheBest(){
+      Iterator<BasketballPlayer> itr = teamBasketball.iterator();
+      BasketballPlayer best = itr.next();
+      int highest = best.getTotalPoints();
+      while(itr.hasNext()){
+         BasketballPlayer other = itr.next();
+         int next = other.getTotalPoints();
+         if(next > highest){
+            best = other;
+         }
+      }
+      return best;
+   }
+   /**
+    * This method selects the player with the most rebounds
+    * 
+    * @return most Basketball player with the most rebounds
+    */
+   public BasketballPlayer selectMostRebound(){
+      Iterator<BasketballPlayer> itr = teamBasketball.iterator();
+      BasketballPlayer most = itr.next();
+      int highest = most.getRebound();
+      while(itr.hasNext()){
+         BasketballPlayer other = itr.next();
+         int next = other.getRebound();
+         if(next > highest){
+            most = other;
+         }
+      }
+      return most;
+   }
+   /**
+    * This method is a to string interpretation
+    * 
+    * @return s String interpretation of the whole team
+    */
+   public String toString(){
+      String s = "";
+      for(BasketballPlayer p: teamBasketball){
+         s = s + p.toString() + "\n";
+      }
+      return s;
+   }
+   /**
+    * This method determines whether 2 players are equal
+    * 
+    * @param other Other basketball team
+    * @return false 
+    */
+   public boolean equals(BasketBallTeam other){
+      for(BasketballPlayer p: teamBasketball){
+         boolean value = p.equals(other);
+      }
+      return false;
+   }
+   /**
+    * This method removes a player to an array list
+    * 
+    * @param bp Basketball player to be removed
+    */
+   public void Remove(BasketballPlayer bp){
+      teamBasketball.remove(teamBasketball.indexOf(bp));
+   }
+   /**
+    * This method removes a player at a specific index
+    * 
+    * @param index Index at where the player will be removed
+    */
+   public void Remove(int index){
+      teamBasketball.remove(index);
+   }
+}
