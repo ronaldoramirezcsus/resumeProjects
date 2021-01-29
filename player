@@ -1,0 +1,85 @@
+/**
+ * This is a player class
+ *
+ * @author Ronaldo Ramirez
+ * @version November 1, 2020
+ */
+public class Player{
+   private String name;
+   private double salary;
+   private int number;
+   /**
+    * The constructor sets name, salary and number to the parametes
+    *
+    * @param name Name of the player
+    * @param salary Salary of the player
+    * @param number Number of the player
+    */
+   public Player(String name, double salary, int number){
+      this.name = name;
+      this.salary = salary;
+      this.number = number;
+   }
+   /**
+    * Sets the name
+    *
+    * @param n Name
+    */
+   public void setName(String n){
+      name = n;
+   }
+   /**
+    * Sets the salary
+    *
+    * @param s Salary
+    */
+   public void setSalary(double s){
+      salary = s;
+   }
+   /**
+    * Sets the number
+    *
+    * @param n Number
+    */
+   public void setNumber(int n){
+      number = n;
+   }
+   /**
+    * Gets the name
+    *
+    * @return name Name
+    */
+   public String getName(){
+      return name;
+   }
+   /**
+    * Gets the salary
+    *
+    * @return salary Salary
+    */
+   public double getSalary(){
+      return salary;
+   }
+   /**
+    * Gets the number
+    *
+    * @return number Number
+    */
+   public int getNumber(){
+      return number;
+   }
+   /** 
+    * Gets a boolean value
+    * 
+    * @return true
+    */
+   public boolean equals(){
+      return true;
+   }
+   /**
+    * To string method
+    */
+   public String toString(){
+      return "";
+   }
+}
